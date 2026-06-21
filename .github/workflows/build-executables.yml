@@ -69,16 +69,18 @@ jobs:
       
       - name: pack all files (Linux)
         run: mkdir OrcsCastleDefence-linux;
-             cp -r assets/* OrcsCastleDefence-linux/;
-             cp -r src/* OrcsCastleDefence-linux/;
+             cp -r assets/ OrcsCastleDefence-linux/;
+             cp -r src/ OrcsCastleDefence-linux/;
+             mv OrcsCastleDefence OrcsCastleDefence-linux/;
  
       - name: zip release folder (Linux)
         run: zip -r OrcsCastleDefence-linux.zip ./OrcsCastleDefence-linux/
 
       - name: pack all files (Windows)
         run: mkdir OrcsCastleDefence-windows;
-             cp -r assets/* OrcsCastleDefence-windows/;
-             cp -r src/* OrcsCastleDefence-windows/;
+             cp -r assets/ OrcsCastleDefence-windows/;
+             cp -r src/ OrcsCastleDefence-windows/;
+             mv OrcsCastleDefence.exe OrcsCastleDefence-windows/;
  
       - name: zip release folder (windows)
         run: zip -r OrcsCastleDefence-windows.zip ./OrcsCastleDefence-windows/
