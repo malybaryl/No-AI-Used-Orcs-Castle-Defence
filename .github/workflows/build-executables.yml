@@ -1,30 +1,32 @@
-name: build-executio
+name: build-executables
 run-name: Building execution files ${{ github.actor }}
 on:
   push:
     branches:
       - 'main'
+
 jobs:
-  pyinstaller-build:
+  build:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
 
-    runs-on: ${{ matrix-os }}
-    
+    runs-on: ${{ matrix.os }}
+
+    steps:
       - name: Checkout repository
-      uses: actions/checkout@v4
-      
+        uses: actions/checkout@v4
+
       - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.12"
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
       - name: Build executable
-        run: pyinstaller --onefile --nowindowed main.py
+        run: pyinstaller --onefile --nowindowed app.py
 
       - name: Rename executable
         run: |
@@ -34,16 +36,15 @@ jobs:
             mv dist/main dist/OrcsCastleDefence
           fi
         shell: bash
-
       - name: Copy sources files
         run: |
           cp -r assets/* dist/;
           cp -r src/* dist/;
-
+          
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-${{ matrix.os }}
+          name: OrcsCastleDefence-${{ matrix.os }}
           path: dist/*
 
   release:
