@@ -7,7 +7,7 @@ on:
 jobs:
   build-exection-files:
     runs-on: ubuntu-latest
-      - name: Create Executable
+      - name: create-executable
          uses: sayyid5416/pyinstaller@v1
           with:
             python_ver: '3.6'
