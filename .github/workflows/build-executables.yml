@@ -67,6 +67,7 @@ jobs:
         run: chmod +x OrcsCastleDefence* || true
 
       - name: Create GitHub Release
+        permissions: write-all
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.event.inputs.version }}
