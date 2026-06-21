@@ -1,0 +1,17 @@
+name: build-executio
+run-name: Building execution files ${{ github.actor }}
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  build-exection-files:
+    runs-on: ubuntu-latest
+      - name: Create Executable
+         uses: sayyid5416/pyinstaller@v1
+          with:
+            python_ver: '3.6'
+            spec: 'src/build.spec'
+            requirements: 'src/requirements.txt'
+            upload_exe_with_name: 'Orcs Castle Defence'
+            options: --onefile, --name "Orcs Castle Defence", --windowed, 
