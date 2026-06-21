@@ -66,6 +66,22 @@ jobs:
 
       - name: Make files executable (Linux)
         run: chmod +x OrcsCastleDefence* || true
+      
+      - name: pack all files (Linux)
+        run: mkdir OrcsCastleDefence-linux;
+             cp -r assets/* OrcsCastleDefence-linux;
+             cp -r src/* OrcsCastleDefence-linux;
+ 
+      - name: zip release folder (Linux)
+        run: zip OrcsCastleDefence-linux.zip ./OrcsCastleDefence-linux/
+
+      - name: pack all files (Windows)
+        run: mkdir OrcsCastleDefence-windows;
+             cp -r assets/* OrcsCastleDefence-windows;
+             cp -r src/* OrcsCastleDefence-windows;
+ 
+      - name: zip release folder (windows)
+        run: zip OrcsCastleDefence-windows.zip ./OrcsCastleDefence-windows/
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v3
@@ -75,5 +91,5 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            OrcsCastleDefence
-            OrcsCastleDefence.exe
+            OrcsCastleDefence-linux.zip
+            OrcsCastleDefence-windows.zip
