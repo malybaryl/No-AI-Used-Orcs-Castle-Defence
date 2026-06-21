@@ -2,8 +2,8 @@ name: build-executables
 run-name: Building execution files ${{ github.actor }}
 on:
   push:
-    branches:
-      - 'main'
+    tags:
+      - 'v*'
 
 jobs:
   build:
