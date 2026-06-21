@@ -35,7 +35,9 @@ class Enemy(LivingEntity):
         shoot = None
         end_game = False
         if self.attack_animation_state:
-            self.attact_animation(50)
+            self.attact_animation(100)
+        else:
+            self.image_to_show = self.assets[0]
 
         if endZone:
             if self.rect.colliderect(endZone.rect):
